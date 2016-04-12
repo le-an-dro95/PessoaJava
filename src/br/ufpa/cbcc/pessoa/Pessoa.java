@@ -1,8 +1,12 @@
 package br.ufpa.cbcc.pessoa;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
+import java.util.*;
+import java.text.*;
 
-public abstract class Pessoa {
+public abstract class Pessoa implements InfEmprestimo{
 	Scanner ler = new Scanner(System.in);
     private String nome;
     private int idade;
@@ -15,7 +19,8 @@ public abstract class Pessoa {
     private static int maxEmprestimo=3;
     private int qtddeLivros=0; 
     private String [] livroNomes;
-	  
+    int diaEmprestimo;
+	
     public abstract void apresentarMenu();
     
     public Pessoa()
@@ -35,7 +40,27 @@ public abstract class Pessoa {
         this.idade = idade;
         this.genero = genero;
     }
-
+    
+    @Override
+    public void dataEmprestimo()
+    {
+    	int mes, ano;
+       	System.out.println("Data de Hoje: \n");   
+       	System.out.println("Dia: ");
+        diaEmprestimo = ler.nextInt();
+        System.out.println("Mes: ");
+        mes = ler.nextInt();
+        System.out.println("Ano: ");
+        ano = ler.nextInt();
+    }
+    
+    @Override
+    public void dataDevolucao()
+    {
+    	System.out.println("Devolver ate: "+diaEmprestimo+30);
+    }
+    
+    
     public int getQtdPessoas()
     {
         return this.qtdPessoas;
