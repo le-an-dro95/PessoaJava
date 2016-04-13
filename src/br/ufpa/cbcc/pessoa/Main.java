@@ -5,8 +5,12 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Cliente gente = new Cliente();
-		gente.apresentarMenu(); //só pra testar..
+		gente.autenticacao();//Pessoa
+		gente.autenticacao("Usuario1", "SenhadoUsuario");//PessoaFisica
 		
+		gente.validar();//PessoaFisica
+		
+		//new Pessoa.validar();
 	}
 
 }

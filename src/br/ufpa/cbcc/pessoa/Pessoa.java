@@ -29,7 +29,9 @@ public abstract class Pessoa implements InfEmprestimo, Autenticar{
         this.genero= "genero";
     }
 
-    public Pessoa(String nome, int idade, String genero, int dia, int mes, int ano, String rua, int numero, String bairro, String cidade, String estado)
+    public Pessoa(String nome, int idade, String genero, int dia,
+    			  int mes,int ano, String rua, int numero, 
+    			  String bairro, String cidade, String estado)
     {
     	dataNascimento = new Data(dia, mes, ano);
     	dadosEndereco = new Endereco(rua, numero, bairro, cidade, estado);  			
@@ -45,11 +47,13 @@ public abstract class Pessoa implements InfEmprestimo, Autenticar{
     	this.usuario = ler.next();
     	System.out.println("Senha: ");	
 		this.senha= ler.next();
+	System.out.println("Usou o autenticacao() implementado no Pessoa");
 	}
     
 	@Override
 	public boolean validar()
 	{
+		System.out.println("Escreveu metodo validar no Pessoa");
 		if (usuario == "123" && senha == "123")
 			return true;
 		return false;

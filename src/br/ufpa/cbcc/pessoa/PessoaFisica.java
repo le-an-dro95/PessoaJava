@@ -5,6 +5,7 @@ public abstract class PessoaFisica extends Pessoa {
 	private String cpf;
 	private String usuario, senha;
 	
+	
 	public abstract void apresentarMenu();
 	public abstract void autenticar();
 	public abstract String getSenha();
@@ -24,15 +25,17 @@ public abstract class PessoaFisica extends Pessoa {
 	{
 		this.usuario=usuario;
 		this.senha=senha;
+		System.out.println("Usou o autenticacao() implementado no PessoaFisica");
 	}
 	
 	@Override
 	public boolean validar()
 	{
-		if (usuario == "123" && senha == "123" && cpf == "001002003-11")
+		System.out.println("Sobrescreveu metodo validar no PessoaFisica");
+		if (usuario == "123" && senha == "123" 
+			&& cpf == "001002003-11")
 			return true;
-		else 
-			return false;
+		else return false;
 	}
 	
 	public String getCpf()
