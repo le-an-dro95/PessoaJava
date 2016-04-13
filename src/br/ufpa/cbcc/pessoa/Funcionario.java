@@ -1,6 +1,6 @@
 package br.ufpa.cbcc.pessoa;
 
-public final class Funcionario extends PessoaFisica implements InfFuncionario{
+public final class Funcionario extends PessoaFisica implements InfFuncionario, AutenticarFuncionario {
 	
 	private String idFuncionario;
 	private String senha;
@@ -35,6 +35,37 @@ public final class Funcionario extends PessoaFisica implements InfFuncionario{
 		funcao = ler.nextLine();
 	}
 	
+	@Override
+	public void autenticacao(String usuario, String senha, String senhaMestra)
+	{
+		this.idFuncionario=usuario;
+		this.senha=senha;
+	    this.senhaMestra=senhaMestra;
+	}
+	
+	@Override
+	public void autenticacao(String usuario, String senha)
+	{
+		this.idFuncionario=usuario;
+		this.senha=senha;
+	}
+	
+	@Override
+	public boolean validarMestra()
+	{
+		 if (idFuncionario == "123" && senha == "123" && senhaMestra == "123")
+		        return true;
+			return false;
+	}
+	
+	@Override
+	public boolean validar()
+	{
+		if (idFuncionario == "123" && senha == "123")
+	        return true;
+		return false;
+	}
+	
 	public void autenticar()
 	{
 	    System.out.println("ID Funcionario: ");
@@ -43,13 +74,6 @@ public final class Funcionario extends PessoaFisica implements InfFuncionario{
 	    senhaMestra = ler.next();
 	    System.out.println("Senha: ");
 	    senha = ler.next();
-	}
-
-	public boolean liberaAcesso()
-	{
-	    if (idFuncionario == "123" && senha == "123" && senhaMestra == "123")
-	        return true;
-		return false;
 	}
 
 	public String getLogin()
