@@ -1,10 +1,5 @@
 package br.ufpa.cbcc.pessoa;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
-import java.util.*;
-import java.text.*;
 
 public abstract class Pessoa implements InfEmprestimo, Autenticar{
 	Scanner ler = new Scanner(System.in);
@@ -50,13 +45,6 @@ public abstract class Pessoa implements InfEmprestimo, Autenticar{
     	this.usuario = ler.next();
     	System.out.println("Senha: ");	
 		this.senha= ler.next();
-	}
-	
-	@Override
-	public void autenticacao(String usuario, String senha)
-	{
-		this.usuario=usuario;
-		this.senha=senha;
 	}
     
 	@Override
