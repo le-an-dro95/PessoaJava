@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.util.*;
 import java.text.*;
 
-public abstract class Pessoa implements InfEmprestimo{
+public abstract class Pessoa implements InfEmprestimo, Autenticar{
 	Scanner ler = new Scanner(System.in);
     private String nome;
     private int idade;
@@ -19,7 +19,9 @@ public abstract class Pessoa implements InfEmprestimo{
     private static int maxEmprestimo=3;
     private int qtddeLivros=0; 
     private String [] livroNomes;
-    int diaEmprestimo;
+    private int diaEmprestimo;
+    private String usuario;
+    private String senha;
 	
     public abstract void apresentarMenu();
     
@@ -40,6 +42,30 @@ public abstract class Pessoa implements InfEmprestimo{
         this.idade = idade;
         this.genero = genero;
     }
+    
+    @Override
+	public void autenticacao()
+	{
+    	System.out.println("Usuario: ");
+    	this.usuario = ler.next();
+    	System.out.println("Senha: ");	
+		this.senha= ler.next();
+	}
+	
+	@Override
+	public void autenticacao(String usuario, String senha)
+	{
+		this.usuario=usuario;
+		this.senha=senha;
+	}
+    
+	@Override
+	public boolean validar()
+	{
+		if (usuario == "123" && senha == "123")
+			return true;
+		return false;
+	}
     
     @Override
     public void dataEmprestimo()
