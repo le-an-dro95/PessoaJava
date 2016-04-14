@@ -1,11 +1,11 @@
 package br.ufpa.cbcc.pessoa;
 import java.util.Scanner;
 
-public abstract class Pessoa implements InfEmprestimo, Autenticar{
+public abstract class Pessoa implements InfEmprestimo, Autenticavel{
 	Scanner ler = new Scanner(System.in);
-    private String nome;
-    private int idade;
-    private String genero; 
+    public String nome;
+    public int idade;
+    public String genero; 
     private Data dataNascimento;
     private Endereco dadosEndereco;
     
@@ -40,8 +40,15 @@ public abstract class Pessoa implements InfEmprestimo, Autenticar{
         this.genero = genero;
     }
     
+    public Pessoa(String nome, int idade, String genero)
+    {
+    	this.nome = nome; 
+        this.idade = idade;
+        this.genero = genero;
+    }
+    
     @Override
-	public void autenticacao()
+	public void dadosParaAutenticacao()
 	{
     	System.out.println("Usuario: ");
     	this.usuario = ler.next();

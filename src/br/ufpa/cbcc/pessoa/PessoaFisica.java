@@ -12,16 +12,18 @@ public abstract class PessoaFisica extends Pessoa {
 	
 	public PessoaFisica()
 	{
+		super();
 	    this.cpf="000.000.000-00";
 	}
 
-	public PessoaFisica(String cpf)
+	public PessoaFisica(String nome, int idade, String genero, String cpf)
 	{
+		super(nome, idade, genero);
 	    this.cpf = cpf;
 	}
 	
 	@Override
-	public void autenticacao(String usuario, String senha)
+	public void dadosParaAutenticacao(String usuario, String senha)
 	{
 		this.usuario=usuario;
 		this.senha=senha;
