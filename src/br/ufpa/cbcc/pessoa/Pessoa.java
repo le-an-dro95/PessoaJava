@@ -270,12 +270,12 @@ public abstract class Pessoa implements InfEmprestimo, Autenticavel{
         return this.genero;
     }
 
-    public void listaNomes(int n, Pessoa gente){
+    public void listaNomes(Cliente [] gente){
         //system("cls");
     	System.out.println("Lista de Nomes\n\n");
-        for(int i=1;i<=n;i++){
-        	System.out.println(" "+i);
-        	System.out.println("- "+gente.getNome());
+        for(int indexPessoa=1;indexPessoa<=gente.length;indexPessoa++){
+        	System.out.println(" "+indexPessoa);
+        	System.out.println("- "+gente[indexPessoa].getNome());
         }
     }
 
