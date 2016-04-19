@@ -1,6 +1,9 @@
 package br.ufpa.cbcc.pessoa;
 import java.util.Scanner;
 
+//ler sobre alocação dinamica e construtor de cópia;
+//fazer o main;
+
 public abstract class Pessoa implements InfEmprestimo, Autenticavel{
 	Scanner ler = new Scanner(System.in);
     public String nome;
@@ -13,7 +16,7 @@ public abstract class Pessoa implements InfEmprestimo, Autenticavel{
     private int qtdPessoas=0;
     private static int maxEmprestimo=3;
     private int qtddeLivros=0; 
-    private String [] livroNomes;
+    private String livroNomes[];
     private int diaEmprestimo;
     private String usuario;
     private String senha;
@@ -44,8 +47,116 @@ public abstract class Pessoa implements InfEmprestimo, Autenticavel{
     {
     	this.nome = nome; 
         this.idade = idade;
-        this.genero = genero;
+        this.genero = genero;//só pra testar;
     }
+    
+    /*construtor de cópia
+    public Pessoa(Pessoa p)
+    {
+    	dadosEndereco(p.dadosEndereco);
+    	dataNascimento(p.dataNascimento);
+        this.nome = p.nome; 
+        this.idade = p.idade;
+        this.genero = p.genero;
+    }
+    */
+    
+    
+    
+    public void adcionarLivro(String livro)
+  //Adiciona o livro por meio de alocação dinamica de memoria com limite de ate 3 livros.
+    {
+      if(qtddeLivros<maxEmprestimo)
+      {
+      if(qtddeLivros!=0)
+      {
+      String[] aux;
+      
+      for(int i=0;i<qtddeLivros;i++)
+          aux[i] = livroNomes[i];
+      
+      //delete [] livroNomes;
+      
+      livroNomes = new String[++qtddeLivros];
+      
+      for(int i=0;i<qtddeLivros-1;i++)
+          livroNomes[i] = aux[i];
+          
+      livroNomes[qtddeLivros-1]= livro;
+      
+      //delete [] aux;
+      }
+       else
+      {
+    	   String[]livroNomes;
+    	   this.livroNomes[0] = livro;
+      }
+      }
+      else 
+      {
+          //system("cls");
+          System.out.println("\n\nNumero maximo de emprestimo atingido");
+          //getch();
+      }
+  }
+
+  public void remLivro()
+  //Remove livro com alocação dinamica de memoria..
+  {
+      int rem, i;
+      
+      if(qtddeLivros!=0)
+      {
+      //system("cls");
+      System.out.println(":::Livros Emprestados::: \n\n");
+      for(i=0;i<qtddeLivros;i++){
+          System.out.println(" "+i +"- "+livroNomes[i]);
+      }
+      
+      System.out.println("Digite o numero do Livro que deseja remover: ");
+      rem = ler.nextInt();
+      
+      String [] aux;
+      
+      for(i=0;i<qtddeLivros;i++)
+          aux[i] = livroNomes[i];
+      
+      //delete [] livroNomes;
+      
+      String [] livroNomes;
+      
+      for(i=0;i<rem;i++){
+          livroNomes[i]=aux[i];
+      }
+          
+      for(i=rem;i<qtddeLivros;i++){
+          livroNomes[i] = aux[i+1];
+      }
+      
+      //delete [] aux;
+      System.out.println("Livro Removido!");
+      //getch();
+      }
+      else
+      {
+      System.out.println("Usuario nao possui livro emprestado");
+      //getch();
+      }
+  }
+    
+  public void listarLivros()
+  {   
+      //system("cls");
+      if(qtddeLivros!=0){
+
+          System.out.println(":::Livros Emprestados:::");
+          for(int i=0;i<qtddeLivros;i++){
+        	  System.out.println(" "+i+"- "+livroNomes[i]);
+          }
+      }
+      else System.out.println("Usuario nao possui livro emprestado");
+      //getch();
+  }
     
     @Override
 	public void dadosParaAutenticacao()
