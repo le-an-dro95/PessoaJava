@@ -225,9 +225,8 @@ public abstract class Pessoa implements InfEmprestimo, Autenticavel{
     public void listaNomes(Funcionario [] pessoas){
         //system("cls");
     	System.out.println("Lista de Nomes\n\n");
-        for(i=1;i<=pessoas.length;i++){
-        	System.out.println(" "+i);
-        	System.out.println("- "+pessoas[i].getNome());
+        for(i=0;i<=indexPessoa;i++){
+        	System.out.println(" "+i+"- "+pessoas[i].getNome());
         }
     }
 

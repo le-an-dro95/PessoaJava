@@ -6,7 +6,7 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner ler = new Scanner(System.in);
 		String resp1, resp2, nome, genero, livro;
-		int n, op, op1, idade;
+		int n, op, op1, idade, cont=11, numReg;
 		Funcionario pessoas[] = new Funcionario[10];
 
 		int indexPessoa=0;
@@ -39,19 +39,21 @@ public class Main {
 		do{
 		    pessoas[indexPessoa].apresentarMenu();
 		    System.out.println("\n");
-		    System.out.println("\n\n\nQuantidade de usuario cadastrado: "+pessoas.length+"\n\n");
+		    System.out.println("\n\n\nQuantidade de usuario cadastrado: "+indexPessoa+"\n\n");
 		    resp1="n";
-		    op = ler.nextInt();;
+		    op = ler.nextInt();
 		        switch(op)
 		        {
 		        case 1:
 		        {     
 		          //  system("cls"); 
 		        	System.out.println("::: CADASTRO :::\n\n");
-		            
-		            //pessoas.push_back(new Cliente);
-		            
-		            //indexPessoa=pessoas.length-1;
+		        	
+		        	cont=cont-1;
+		            indexPessoa=pessoas.length-cont;
+		            System.out.println(" "+indexPessoa);
+		            pessoas[indexPessoa] = new Funcionario();
+		        	
 		        	System.out.println("Nome: ");
 		            nome = ler.next();
 		            pessoas[indexPessoa].setNome(nome);
@@ -64,7 +66,7 @@ public class Main {
 		            pessoas[indexPessoa].setGenero(genero);
 		            pessoas[indexPessoa].setDadosEndereco();
 		            pessoas[indexPessoa].setCpf(); //Método da Classe PessoaFisica
-		            //pessoas[indexPessoa].autenticacao();//Método virtual da classe Cliente
+		            pessoas[indexPessoa].autenticar();//Método virtual da classe Cliente
 		            System.out.println("\n\nNumero de Registro: "+indexPessoa);
 		            //getch();
 		            break;
@@ -79,14 +81,20 @@ public class Main {
 		        	 do{
 		        		 resp2="n";
 				         System.out.println("\n\nDigite o numero de Registro: ");
-				         indexPessoa = ler.nextInt();
-				         if(indexPessoa>=0 && indexPessoa<pessoas.length) resp2="s";
+				         numReg = ler.nextInt();
+				         
+				         if(numReg>=0 && numReg<=indexPessoa) 
+				        	 {
+				        	 	resp2="s";
+				        	 	indexPessoa=numReg;
+				        	 }
 				     }while(resp2=="n");  //só pra fluir direito..
 		        	 do{
 		        		 resp2="n";
 				         //system("cls");
 				         System.out.println("Usuario: "+pessoas[indexPessoa].getNome()+"\n");
 				         System.out.println("Numero de Registro: "+indexPessoa+"\n\n");
+				         
 				         pessoas[indexPessoa].apresentarMenu();
 				         op1 = ler.nextInt();
 				         switch(op1)
@@ -105,11 +113,11 @@ public class Main {
 				         //system("cls");
 				         System.out.println("Quantidade Maxima de emprestimo: "+pessoas[indexPessoa].getMaxEmprestimo()+"\n\n");
 				         System.out.println("Nome do Livro: ");
-				         livro = ler.nextLine();
+				         livro = ler.next();
 				         //system("cls");
 				         System.out.println("Confirmar Usuario\n\n");
 				         System.out.println("Senha: ");
-				         senhatest = ler.nextLine();                    
+				         senhatest = ler.next();                    
 				         if(senhatest == pessoas[indexPessoa].getSenha())
 				         pessoas[indexPessoa].adcionarLivro(livro);
 				         else System.out.println("senha incorreta!");
@@ -122,7 +130,7 @@ public class Main {
 				         //system("cls");
 				         pessoas[indexPessoa].remLivro();
 				         break;         
-				         }
+				         }	
 				         case 4:
 				         {
 				         pessoas[indexPessoa].listarLivros();
