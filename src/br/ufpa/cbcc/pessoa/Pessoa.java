@@ -1,5 +1,6 @@
 package br.ufpa.cbcc.pessoa;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 //ler sobre alocação dinamica e construtor de cópia;
 //fazer o main;
@@ -11,15 +12,15 @@ public abstract class Pessoa implements InfEmprestimo, Autenticavel{
     public String genero; 
     private Data dataNascimento;
     private Endereco dadosEndereco;
-    
     private int indexPessoa;
     private int qtdPessoas=0;
+    private int diaEmprestimo;
     private static int maxEmprestimo=3;
     private int qtddeLivros=0; 
-    private String livroNomes[];
-    private int diaEmprestimo;
     private String usuario;
     private String senha;
+    private int i;
+    ArrayList<String> livroNomes = new ArrayList<String>();
 	
     public abstract void apresentarMenu();
     
@@ -50,49 +51,22 @@ public abstract class Pessoa implements InfEmprestimo, Autenticavel{
         this.genero = genero;//só pra testar;
     }
     
-    /*construtor de cópia
+    
     public Pessoa(Pessoa p)
     {
-    	dadosEndereco(p.dadosEndereco);
-    	dataNascimento(p.dataNascimento);
         this.nome = p.nome; 
         this.idade = p.idade;
         this.genero = p.genero;
     }
-    */
     
-    
-    
-    public void adcionarLivro(String livro)
+    public void adcionarLivro(String livro)   
   //Adiciona o livro por meio de alocação dinamica de memoria com limite de ate 3 livros.
     {
       if(qtddeLivros<maxEmprestimo)
       {
-      if(qtddeLivros!=0)
-      {
-      String[] aux;
-      
-      for(int i=0;i<qtddeLivros;i++)
-          aux[i] = livroNomes[i];
-      
-      //delete [] livroNomes;
-      
-      livroNomes = new String[++qtddeLivros];
-      
-      for(int i=0;i<qtddeLivros-1;i++)
-          livroNomes[i] = aux[i];
-          
-      livroNomes[qtddeLivros-1]= livro;
-      
-      //delete [] aux;
-      }
-       else
-      {
-    	   String[]livroNomes;
-    	   this.livroNomes[0] = livro;
-      }
-      }
-      else 
+   	   livroNomes.add(livro);
+   	   qtddeLivros = livroNomes.size();
+      }else 
       {
           //system("cls");
           System.out.println("\n\nNumero maximo de emprestimo atingido");
@@ -100,62 +74,40 @@ public abstract class Pessoa implements InfEmprestimo, Autenticavel{
       }
   }
 
-  public void remLivro()
+  public void remLivro()   //precisa testar..
   //Remove livro com alocação dinamica de memoria..
   {
-      int rem, i;
+      int rem;
       
       if(qtddeLivros!=0)
       {
       //system("cls");
       System.out.println(":::Livros Emprestados::: \n\n");
       for(i=0;i<qtddeLivros;i++){
-          System.out.println(" "+i +"- "+livroNomes[i]);
+          System.out.printf("%d- %s\n", qtddeLivros, livroNomes.get(i));
       }
       
       System.out.println("Digite o numero do Livro que deseja remover: ");
       rem = ler.nextInt();
-      
-      String [] aux;
-      
-      for(i=0;i<qtddeLivros;i++)
-          aux[i] = livroNomes[i];
-      
-      //delete [] livroNomes;
-      
-      String [] livroNomes;
-      
-      for(i=0;i<rem;i++){
-          livroNomes[i]=aux[i];
-      }
-          
-      for(i=rem;i<qtddeLivros;i++){
-          livroNomes[i] = aux[i+1];
-      }
-      
-      //delete [] aux;
+      livroNomes.remove(0);
+
       System.out.println("Livro Removido!");
-      //getch();
       }
       else
       {
       System.out.println("Usuario nao possui livro emprestado");
-      //getch();
       }
   }
     
-  public void listarLivros()
+  public void listarLivros() //precisa testar..
   {   
-      //system("cls");
       if(qtddeLivros!=0){
-
-          System.out.println(":::Livros Emprestados:::");
-          for(int i=0;i<qtddeLivros;i++){
-        	  System.out.println(" "+i+"- "+livroNomes[i]);
+    	  System.out.println(":::Livros Emprestados::: \n\n");
+          for(i=0;i<qtddeLivros;i++){
+              System.out.printf("%d- %s\n", qtddeLivros, livroNomes.get(i));
           }
       }
       else System.out.println("Usuario nao possui livro emprestado");
-      //getch();
   }
     
     @Override
@@ -212,15 +164,15 @@ public abstract class Pessoa implements InfEmprestimo, Autenticavel{
         String rua, bairro, cidade, estado;
         int n;
         System.out.println("Rua: ");
-        rua = ler.nextLine();
+        rua = ler.next();
         System.out.println("Numero: ");
         n = ler.nextInt();
         System.out.println("Bairro: ");
-        bairro = ler.nextLine();
+        bairro = ler.next();
         System.out.println("Cidade: ");
-        cidade = ler.nextLine();
+        cidade = ler.next();
         System.out.println("Estado: ");
-        estado = ler.nextLine();
+        estado = ler.next();
         dadosEndereco.setEndereco(rua,n,bairro,cidade,estado);
     }
 
@@ -270,12 +222,12 @@ public abstract class Pessoa implements InfEmprestimo, Autenticavel{
         return this.genero;
     }
 
-    public void listaNomes(Cliente [] gente){
+    public void listaNomes(Funcionario [] pessoas){
         //system("cls");
     	System.out.println("Lista de Nomes\n\n");
-        for(int indexPessoa=1;indexPessoa<=gente.length;indexPessoa++){
-        	System.out.println(" "+indexPessoa);
-        	System.out.println("- "+gente[indexPessoa].getNome());
+        for(i=1;i<=pessoas.length;i++){
+        	System.out.println(" "+i);
+        	System.out.println("- "+pessoas[i].getNome());
         }
     }
 
