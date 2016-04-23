@@ -1,43 +1,40 @@
 package br.ufpa.cbcc.pessoa;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 
 	public static void main(String[] args) {
+		
+		ArrayList<PessoaFisica> pessoasfisica = new ArrayList<>();
+		
+		pessoasfisica.add(new Cliente());
+		pessoasfisica.add(new Funcionario());
+		
+		for (PessoaFisica pessoa : pessoasfisica) //para testar o método sobrescrito..
+		{
+			pessoa.autenticar();
+			
+			if(pessoa instanceof Cliente)
+			{
+				((Cliente) pessoa).listarLivros();
+			}else if(pessoa instanceof Funcionario)
+			{
+				((Funcionario) pessoa).apresentarMenu();
+			}
+		}
+		
+		
 		Scanner ler = new Scanner(System.in);
 		String resp1, resp2, nome, genero, livro;
 		int n, op, op1, idade, cont=11, numReg;
-		Funcionario pessoas[] = new Funcionario[10];
+		
+		Funcionario funcionario = new Funcionario();
+		Cliente pessoas[] = new Cliente[10];
 
 		int indexPessoa=0;
-		
-		pessoas[0] = new Funcionario();
-		
-		/*vector <PessoaFisica*> pessoas;//vector para estanciar mais de uma pessoa
-	    
-	    pessoas.push_back(new Funcionario);
-	    pessoas.push_back(new Cliente);
-	    
-	    for(int i=0; i<pessoas.size();i++)
-	    {
-	        Funcionario * funcionarioPtr = dynamic_cast<Funcionario *>(pessoas[i]);//dynamic cast para chamar os métodos do funcionario.
-	        if (funcionarioPtr != 0)
-	        {
-	            funcionarioPtr->autenticacao();
-	        }
-	        else
-	        {
-	            Cliente * clientePtr = dynamic_cast<Cliente *>(pessoas[i]);//dynamic cast para chamar os métodos do funcionario.
-	            if (clientePtr != 0) 
-	            {
-	                clientePtr->autenticacao();
-	            }
-	        }
-	    }
-			 */
-	
 		do{
-		    pessoas[indexPessoa].apresentarMenu();
+		    funcionario.apresentarMenu();
 		    System.out.println("\n");
 		    System.out.println("\n\n\nQuantidade de usuario cadastrado: "+indexPessoa+"\n\n");
 		    resp1="n";
@@ -52,7 +49,7 @@ public class Main {
 		        	cont=cont-1;
 		            indexPessoa=pessoas.length-cont;
 		            System.out.println(" "+indexPessoa);
-		            pessoas[indexPessoa] = new Funcionario();
+		            pessoas[indexPessoa] = new Cliente();
 		        	
 		        	System.out.println("Nome: ");
 		            nome = ler.next();
