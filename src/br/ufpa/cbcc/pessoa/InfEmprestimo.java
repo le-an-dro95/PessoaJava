@@ -2,7 +2,8 @@ package br.ufpa.cbcc.pessoa;
 
 public interface InfEmprestimo 
 {
-	public void dataEmprestimo();
+	public void gravarDataEmprestimo();
 	
-	public void dataDevolucao();	
+	public void mostrarDataDevolucao();	
 }
+//Implementado na classe Pessoa.

@@ -6,12 +6,12 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		ArrayList<PessoaFisica> pessoasfisica = new ArrayList<>();
+		ArrayList<PessoaFisica> pessoasFisica = new ArrayList<>();
 		
-		pessoasfisica.add(new Cliente());
-		pessoasfisica.add(new Funcionario());
+		pessoasFisica.add(new Cliente());
+		pessoasFisica.add(new Funcionario());
 		
-		for (PessoaFisica pessoa : pessoasfisica) //para testar o método sobrescrito..
+		for (PessoaFisica pessoa : pessoasFisica) //para testar o método sobrescrito..
 		{
 			pessoa.autenticar();
 			
@@ -24,7 +24,6 @@ public class Main {
 			}
 		}
 		
-		
 		Scanner ler = new Scanner(System.in);
 		String resp1, resp2, nome, genero, livro;
 		int n, op, op1, idade, cont=11, numReg;
@@ -34,7 +33,7 @@ public class Main {
 
 		int indexPessoa=0;
 		do{
-		    funcionario.apresentarMenu();
+		    //funcionario.apresentarMenu();
 		    System.out.println("\n");
 		    System.out.println("\n\n\nQuantidade de usuario cadastrado: "+indexPessoa+"\n\n");
 		    resp1="n";

@@ -7,3 +7,4 @@ public interface InfFuncionario {
 	public void informarFuncao();
 	
 }
+//implementado na classe Funcionario.

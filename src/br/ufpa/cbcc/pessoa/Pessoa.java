@@ -11,6 +11,7 @@ public abstract class Pessoa implements InfEmprestimo, Autenticavel{
     public int idade;
     public String genero; 
     private Data dataNascimento;
+    private Data dataEmprestimo;
     private Endereco dadosEndereco;
     private int indexPessoa;
     private int qtdPessoas=0;
@@ -60,7 +61,6 @@ public abstract class Pessoa implements InfEmprestimo, Autenticavel{
     }
     
     public void adcionarLivro(String livro)   
-  //Adiciona o livro por meio de alocação dinamica de memoria com limite de ate 3 livros.
     {
       if(qtddeLivros<maxEmprestimo)
       {
@@ -130,20 +130,21 @@ public abstract class Pessoa implements InfEmprestimo, Autenticavel{
 	}
     
     @Override
-    public void dataEmprestimo()
+    public void gravarDataEmprestimo()
     {
-    	int mes, ano;
+    	int mesEmprestimo, anoEmprestimo;
        	System.out.println("Data de Hoje: \n");   
        	System.out.println("Dia: ");
         diaEmprestimo = ler.nextInt();
         System.out.println("Mes: ");
-        mes = ler.nextInt();
+        mesEmprestimo = ler.nextInt();
         System.out.println("Ano: ");
-        ano = ler.nextInt();
+        anoEmprestimo = ler.nextInt();
+       	dataEmprestimo.setData(diaEmprestimo, mesEmprestimo, anoEmprestimo);
     }
     
     @Override
-    public void dataDevolucao()
+    public void mostrarDataDevolucao()
     {
     	System.out.println("Devolver ate: "+diaEmprestimo+30);
     }

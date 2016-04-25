@@ -9,3 +9,4 @@ public interface Autenticavel{
 	public boolean validar();
 	
 }
+//implementado na classe Pessoa.
