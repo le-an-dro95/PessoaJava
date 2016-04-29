@@ -1,10 +1,11 @@
 package br.ufpa.cbcc.pessoa;
 import java.util.ArrayList;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		ArrayList<PessoaFisica> pessoasFisica = new ArrayList<>();
 		
@@ -22,19 +23,30 @@ public class Main {
 		}
 		
 		Scanner ler = new Scanner(System.in);
-		String resp1, resp2, nome, genero, livro;
-		int n, op, op1, idade, cont=11, numReg;
+		String lerTeclado, resp1, resp2, nome, genero, livro;
+		int qtdCadastro=0, op, op1, idade, cont=11, numReg;
 		
 		Funcionario funcionario = new Funcionario();
 		Cliente pessoas[] = new Cliente[10];
 
 		int indexPessoa=0;
 		do{
-		    //funcionario.apresentarMenu();
+			op=999;
+		    while (true)
+		    {
+		    funcionario.apresentarMenu();
 		    System.out.println("\n");
 		    System.out.println("\n\n\nQuantidade de usuario cadastrado: "+indexPessoa+"\n\n");
+	    	lerTeclado = ler.nextLine();
 		    resp1="n";
-		    op = ler.nextInt();
+		    try {
+		    	op = Integer.parseInt(lerTeclado);
+		    	break;
+		    } catch(NumberFormatException e)
+		    {
+		    	System.out.println("Somente Numeros");
+		    }
+		    }
 		        switch(op)
 		        {
 		        case 1:
@@ -46,7 +58,7 @@ public class Main {
 		            indexPessoa=pessoas.length-cont;
 		            System.out.println(" "+indexPessoa);
 		            pessoas[indexPessoa] = new Cliente();
-		        	
+		
 		        	System.out.println("Nome: ");
 		            nome = ler.next();
 		            pessoas[indexPessoa].setNome(nome);
@@ -61,34 +73,29 @@ public class Main {
 		            pessoas[indexPessoa].setCpf(); //Método da Classe PessoaFisica
 		            pessoas[indexPessoa].autenticar();//Método virtual da classe Cliente
 		            System.out.println("\n\nNumero de Registro: "+indexPessoa);
+		            qtdCadastro=indexPessoa;
 		            //getch();
 		            break;
 		        }
 		        case 2:
 		        {   
-		            //system("cls");
-		        	
-		        if(pessoas.length >= 0)
-		        	{ 
+		        		try{
 		        		 pessoas[indexPessoa].listaNomes(pessoas);
-		        	 do{
+		        		} catch(NullPointerException e)
+		        		{
+		        			System.out.println("Nao existem usuarios cadastrados");
+		        			ler.next();
+		        			break;
+		        		}
 		        		 resp2="n";
 				         System.out.println("\n\nDigite o numero de Registro: ");
 				         numReg = ler.nextInt();
-				         
-				         if(numReg>=0 && numReg<=indexPessoa) 
-				        	 {
-				        	 	resp2="s";
-				        	 	indexPessoa=numReg;
-				        	 }
-				     }while(resp2=="n");  //só pra fluir direito..
-		        	 do{
-		        		 resp2="n";
-				         //system("cls");
 				         System.out.println("Usuario: "+pessoas[indexPessoa].getNome()+"\n");
 				         System.out.println("Numero de Registro: "+indexPessoa+"\n\n");
-				         
 				         pessoas[indexPessoa].apresentarMenu();
+		        		 
+		        		 do{
+			        	 resp2="n";
 				         op1 = ler.nextInt();
 				         switch(op1)
 				         {
@@ -113,14 +120,11 @@ public class Main {
 				         senhatest = ler.next();                    
 				         if(senhatest == pessoas[indexPessoa].getSenha())
 				         pessoas[indexPessoa].adcionarLivro(livro);
-				         else System.out.println("senha incorreta!");
-				         //getch();
-				                   
+				         else System.out.println("senha incorreta!");          
 				         break;
 				         }
 				         case 3: 
 				         {   
-				         //system("cls");
 				         pessoas[indexPessoa].remLivro();
 				         break;         
 				         }	
@@ -135,13 +139,7 @@ public class Main {
 				         break;
 				         }
 				         }
-				      }while(resp2!="s");
-		        	}else
-		            {
-		            	System.out.println("Usuarios nao cadastrados\n");
-		                //getch();
-		                break;
-		            }   
+				      }while(resp2!="s");  
 		        break;   
 		        }
 		        case 3:
