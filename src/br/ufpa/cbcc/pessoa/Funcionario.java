@@ -1,6 +1,6 @@
 package br.ufpa.cbcc.pessoa;
 
-public final class Funcionario extends PessoaFisica implements InfFuncionario{
+public class Funcionario extends PessoaFisica implements InfFuncionario{
 	
 	private String idFuncionario;
 	private String senha;
@@ -10,15 +10,24 @@ public final class Funcionario extends PessoaFisica implements InfFuncionario{
 
 	public Funcionario()
 	{
+		super();
 	    idFuncionario = "NomeUsuario";
 	    senha = "0L@#";
 	}
 
-	public Funcionario(String idFuncionario, String senha, String senhaMestra)
+	public Funcionario(String idFuncionario, String senha, String senhaMestra,String nome, int idade, String genero, String cpf)
 	{
+		super(nome, idade, genero, cpf);
 	    this.idFuncionario=idFuncionario;
 	    this.senha=senha;
 	    this.senhaMestra=senhaMestra;
+	}
+	
+	public Funcionario(Funcionario funcionario)
+	{
+		super(funcionario);
+	    this.idFuncionario=funcionario.idFuncionario;
+	    this.senha=funcionario.senha;
 	}
 	
 	@Override

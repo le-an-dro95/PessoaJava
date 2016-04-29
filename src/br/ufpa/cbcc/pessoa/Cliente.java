@@ -1,20 +1,29 @@
 package br.ufpa.cbcc.pessoa;
 
-public final class Cliente extends PessoaFisica {
+public class Cliente extends PessoaFisica {
 
 	private String login;
 	private String senha;
 	
 	public Cliente()
 	{
+		super();
 	    login = "NomeUsuario";
 	    senha = "0L@#";
 	}
 
-	public Cliente(String login, String senha)
+	public Cliente(String nome, int idade, String genero, String cpf)
 	{
+		super(nome, idade, genero, cpf);
 	    this.login=login;
 	    this.senha=senha;
+	}
+	
+	public Cliente(Cliente cliente)
+	{
+		super(cliente);
+	    this.login=cliente.login;
+	    this.senha=cliente.senha;
 	}
 	
 	public void autenticar()
