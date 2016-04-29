@@ -18,9 +18,6 @@ public class Main {
 			if(pessoa instanceof Cliente)
 			{
 				((Cliente) pessoa).listarLivros();
-			}else if(pessoa instanceof Funcionario)
-			{
-				((Funcionario) pessoa).apresentarMenu();
 			}
 		}
 		
